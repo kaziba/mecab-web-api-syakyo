@@ -63,6 +63,7 @@ func apiRequest(w http.ResponseWriter, r *http.Request) {
    */
   fmt.Println(r)
   // => &{POST / HTTP/1.1 1 1 map[Accept-Language:[ja,en-US;q=0.8,en;q=0.6] Cookie:[REVEL_FLASH=] Content-Length:[76] Origin:[chrome-extension://aejoelaoggembcahagimdiliamlcdmfm] User-Agent:[Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.87 Safari/537.36] Content-Type:[application/json] Accept:[*/*] Accept-Encoding:[gzip, deflate] Connection:[keep-alive]] 0xc820014540 76 [] false 192.168.33.10:9000 map[] map[] <nil> map[] 192.168.33.1:55534 / <nil> <nil>}
+
   // fmt.Println(r.Body)
   // =>  解読不能
 
@@ -80,7 +81,7 @@ func apiRequest(w http.ResponseWriter, r *http.Request) {
 
       		     "Sentence": "すもももももももものうち"
 
-      		   }
+      		  }
     */
     request = request + s
     if err == io.EOF {
@@ -95,11 +96,12 @@ func apiRequest(w http.ResponseWriter, r *http.Request) {
   b := []byte(request)
 
   // json.Unmarshalは、構造体のjsonタグがあればその値を対応するフィールドにマッピングする
-  // ex)
+  // (ex)
   // var mt MyType
   // json.Unarshal([]byte(`{"A":"aaa", "FooBar":"baz"}`, &mt)
   // fmt.Printf("%#v\n", mt)
   err := json.Unmarshal(b, &dec)
+
   fmt.Println(b)
   // => [123 10 32 32 34 84 111 107 101 110 34 58 32 34 48 49 50 51 52 34 44 10 32 32 34 83 101 110 116 101 110 99 101 34 58 32 34 227 129 153 227 130 130 227 130 130 227 130 130 227 130 130 227 130 130 227 130 130 227 130 130 227 130 130 227 129 174 227 129 134 227 129 161 34 10 125]
 
